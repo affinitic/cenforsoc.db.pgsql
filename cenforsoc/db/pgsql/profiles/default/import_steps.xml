@@ -3,7 +3,7 @@
 
  <import-step id="installPgsql"
               version="20080107-01"
-              handler="interclps.db.pgsql.install.setupPgsql"
+              handler="cenforsoc.db.pgsql.install.setupPgsql"
               title="Install Pgsql">
     Install Pgsql
  </import-step>
