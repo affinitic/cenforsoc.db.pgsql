@@ -7,4 +7,20 @@ Copyright by Affinitic sprl
 
 $Id: baseTypes.py 5772 2011-11-06 15:59:55Z amulux $
 """
-#from z3c.sqlalchemy.mapper import MappedClassBase
+from z3c.sqlalchemy.mapper import MappedClassBase
+
+class Periodique(MappedClassBase):
+    pass
+
+class Livre(MappedClassBase):
+    pass
+
+class Formation(MappedClassBase):
+    pass
+
+class FormationInscription(MappedClassBase):
+    pass
+
+class LinkFormationInscription(MappedClassBase):
+    pass
+
