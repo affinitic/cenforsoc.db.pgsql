@@ -11,8 +11,8 @@ def getAllPeriodique(metadata):
                         Column('per_pk', Integer(),
                                Sequence('periodique_per_pk_seq'),
                                primary_key=True),
-                        Column('com_titre', Text()),
-                        Column('com_description', Text()),
+                        Column('per_titre', Text()),
+                        Column('per_description', Text()),
                         autoload=autoload,
                         useexisting=True)
     return periodique
