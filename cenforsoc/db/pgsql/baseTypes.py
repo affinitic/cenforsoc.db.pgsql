@@ -10,17 +10,17 @@ $Id: baseTypes.py 5772 2011-11-06 15:59:55Z amulux $
 from z3c.sqlalchemy.mapper import MappedClassBase
 
 class Periodique(MappedClassBase):
-    pass
+    c = None
 
 class Livre(MappedClassBase):
-    pass
+    c = None
 
 class Formation(MappedClassBase):
-    pass
+    c = None
 
 class FormationInscription(MappedClassBase):
-    pass
+    c = None
 
 class LinkFormationInscription(MappedClassBase):
-    pass
+    c = None
 
