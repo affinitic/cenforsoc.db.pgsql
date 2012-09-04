@@ -14,7 +14,7 @@ def getAllPeriodique(metadata):
                         Column('per_titre', Text()),
                         Column('per_description', Text()),
                         autoload=autoload,
-                        useexisting=True)
+                        extend_existing=True)
     return periodique
 
 
@@ -23,10 +23,10 @@ def getAllLivre(metadata):
     if metadata.bind.has_table('livre'):
         autoload = True
     livre = Table('livre', metadata,
-                  Column('per_pk', Integer(),
+                  Column('liv_pk', Integer(),
                          Sequence('livre_liv_pk_seq'),
                          primary_key=True),
-                  Column('com_titre', Text()),
+                  Column('liv_titre', Text()),
                   Column('liv_inventaire', Text()),
                   Column('liv_cote_rang', Text()),
                   Column('liv_titre', Text()),
@@ -44,7 +44,7 @@ def getAllLivre(metadata):
                   Column('liv_mots_cles', Text()),
                   Column('liv_pret', Text()),
                   autoload=autoload,
-                  useexisting=True)
+                  extend_existing=True)
     return livre
 
 
@@ -63,7 +63,7 @@ def getAllFormation(metadata):
                       Column('form_niveau_requis', Text()),
                       Column('form_etat', Text()),
                       autoload=autoload,
-                      useexisting=True)
+                      extend_existing=True)
     return formation
 
 
@@ -98,7 +98,7 @@ def getAllFormationInscription(metadata):
                                  Column('form_ins_del_cppt', Text()),
                                  Column('form_ins_formation_suivie', Text()),
                                  autoload=autoload,
-                                 useexisting=True)
+                                 extend_existing=True)
     return formationInscription
 
 
@@ -107,12 +107,12 @@ def getLinkFormationInscription(metadata):
     if metadata.bind.has_table('link_formation_inscription'):
         autoload = True
     linkFormationInscription = Table('link_formation_inscription', metadata,
-                                           Column('lnk_formation_pk', Integer(),
-                                                  ForeignKey('formation.form_pk'),
-                                                  primary_key=True),
-                                           Column('lnk_inscription_pk', Integer(),
-                                                  ForeignKey('formation_inscription.form_ins_pk'),
-                                                  primary_key=True),
-                                           useexisting=True,
-                                           autoload=autoload)
+                                     Column('lnk_formation_pk', Integer(),
+                                            ForeignKey('formation.form_pk'),
+                                            primary_key=True),
+                                     Column('lnk_inscription_pk', Integer(),
+                                            ForeignKey('formation_inscription.form_ins_pk'),
+                                            primary_key=True),
+                                     autoload=autoload,
+                                     extend_existing=True)
     return linkFormationInscription

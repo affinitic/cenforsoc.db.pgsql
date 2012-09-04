@@ -12,7 +12,7 @@ from cenforsoc.db.pgsql.tables import (getAllPeriodique,
                                        getAllLivre,
                                        getAllFormation,
                                        getAllFormationInscription,
-                                       getLinkFormationInscription,
+                                       getLinkFormationInscription
                                        )
 
 
