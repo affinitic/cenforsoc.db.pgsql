@@ -14,7 +14,7 @@ def getAllPeriodique(metadata):
                         Column('per_titre', Text()),
                         Column('per_description', Text()),
                         autoload=autoload,
-                        extend_existing=True)
+                        useexisting=True)
     return periodique
 
 
@@ -44,7 +44,7 @@ def getAllLivre(metadata):
                   Column('liv_mots_cles', Text()),
                   Column('liv_pret', Text()),
                   autoload=autoload,
-                  extend_existing=True)
+                  useexisting=True)
     return livre
 
 
@@ -63,7 +63,7 @@ def getAllFormation(metadata):
                       Column('form_niveau_requis', Text()),
                       Column('form_etat', Text()),
                       autoload=autoload,
-                      extend_existing=True)
+                      useexisting=True)
     return formation
 
 
@@ -98,7 +98,7 @@ def getAllFormationInscription(metadata):
                                  Column('form_ins_del_cppt', Text()),
                                  Column('form_ins_formation_suivie', Text()),
                                  autoload=autoload,
-                                 extend_existing=True)
+                                 useexisting=True)
     return formationInscription
 
 
@@ -114,5 +114,5 @@ def getLinkFormationInscription(metadata):
                                             ForeignKey('formation_inscription.form_ins_pk'),
                                             primary_key=True),
                                      autoload=autoload,
-                                     extend_existing=True)
+                                     useexisting=True)
     return linkFormationInscription
