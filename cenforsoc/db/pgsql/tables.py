@@ -137,6 +137,9 @@ def getAllAffiche(metadata):
                     Column('affiche_format', Text()),
                     Column('affiche_nbre_exemplaire', Text()),
                     Column('affiche_mot_cle', Text()),
+                    Column('affiche_descriptif', Text()),
+                    Column('affiche_historique', Text()),
+                    Column('affiche_commanditaire', Text()),
                     autoload=autoload,
                     useexisting=True)
     return affiche
