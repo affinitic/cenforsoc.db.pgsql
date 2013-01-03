@@ -5,11 +5,13 @@ from zope.interface import implements
 from sqlalchemy.orm import mapper
 from cenforsoc.db.pgsql.baseTypes import (Periodique,
                                           Livre,
+                                          Affiche,
                                           Formation,
                                           FormationInscription,
                                           LinkFormationInscription)
 from cenforsoc.db.pgsql.tables import (getAllPeriodique,
                                        getAllLivre,
+                                       getAllAffiche,
                                        getAllFormation,
                                        getAllFormationInscription,
                                        getLinkFormationInscription
@@ -41,6 +43,12 @@ class CenforsocModel(object):
         livreTable.create(checkfirst=True)
         mapper(Livre, livreTable)
         model.add('livre', table=livreTable, mapper_class=Livre)
+
+## table affiche ##
+        afficheTable = getAllAffiche(metadata)
+        afficheTable.create(checkfirst=True)
+        mapper(Affiche, afficheTable)
+        model.add('affiche', table=afficheTable, mapper_class=Affiche)
 
 ## table formation ##
         formationTable = getAllFormation(metadata)

@@ -116,3 +116,27 @@ def getLinkFormationInscription(metadata):
                                      autoload=autoload,
                                      useexisting=True)
     return linkFormationInscription
+
+
+def getAllAffiche(metadata):
+    autoload = False
+    if metadata.bind.has_table('affiche'):
+        autoload = True
+    affiche = Table('affiche', metadata,
+                    Column('affiche_pk', Integer(),
+                           Sequence('affiche_affiche_pk_seq'),
+                           primary_key=True),
+                    Column('affiche_inventaire', Text()),
+                    Column('affiche_titre', Text()),
+                    Column('affiche_auteur', Text()),
+                    Column('affiche_illustrateur', Text()),
+                    Column('affiche_lieu', Text()),
+                    Column('affiche_editeur', Text()),
+                    Column('affiche_date', Text()),
+                    Column('affiche_coloration', Text()),
+                    Column('affiche_format', Text()),
+                    Column('affiche_nbre_exemplaire', Text()),
+                    Column('affiche_mot_cle', Text()),
+                    autoload=autoload,
+                    useexisting=True)
+    return affiche
