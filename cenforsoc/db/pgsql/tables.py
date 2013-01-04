@@ -14,7 +14,7 @@ def getAllPeriodique(metadata):
                         Column('per_titre', Text()),
                         Column('per_description', Text()),
                         autoload=autoload,
-                        useexisting=True)
+                        extend_existing=True)
     return periodique
 
 
@@ -44,7 +44,7 @@ def getAllLivre(metadata):
                   Column('liv_mots_cles', Text()),
                   Column('liv_pret', Text()),
                   autoload=autoload,
-                  useexisting=True)
+                  extend_existing=True)
     return livre
 
 
@@ -63,7 +63,7 @@ def getAllFormation(metadata):
                       Column('form_niveau_requis', Text()),
                       Column('form_etat', Text()),
                       autoload=autoload,
-                      useexisting=True)
+                      extend_existing=True)
     return formation
 
 
@@ -98,7 +98,7 @@ def getAllFormationInscription(metadata):
                                  Column('form_ins_del_cppt', Text()),
                                  Column('form_ins_formation_suivie', Text()),
                                  autoload=autoload,
-                                 useexisting=True)
+                                 extend_existing=True)
     return formationInscription
 
 
@@ -114,7 +114,7 @@ def getLinkFormationInscription(metadata):
                                             ForeignKey('formation_inscription.form_ins_pk'),
                                             primary_key=True),
                                      autoload=autoload,
-                                     useexisting=True)
+                                     extend_existing=True)
     return linkFormationInscription
 
 
@@ -130,9 +130,9 @@ def getAllAffiche(metadata):
                     Column('affiche_titre', Text()),
                     Column('affiche_auteur', Text()),
                     Column('affiche_illustrateur', Text()),
-                    Column('affiche_lieu', Text()),
+                    Column('affiche_lieu_edition', Text()),
                     Column('affiche_editeur', Text()),
-                    Column('affiche_date', Text()),
+                    Column('affiche_date_edition', Text()),
                     Column('affiche_coloration', Text()),
                     Column('affiche_format', Text()),
                     Column('affiche_nbre_exemplaire', Text()),
@@ -140,6 +140,7 @@ def getAllAffiche(metadata):
                     Column('affiche_descriptif', Text()),
                     Column('affiche_historique', Text()),
                     Column('affiche_commanditaire', Text()),
+                    Column('affiche_serie', Text()),
                     autoload=autoload,
-                    useexisting=True)
+                    extend_existing=True)
     return affiche
