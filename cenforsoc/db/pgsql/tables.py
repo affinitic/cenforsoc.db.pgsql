@@ -18,6 +18,38 @@ def getAllPeriodique(metadata):
     return periodique
 
 
+def getAllAuteur(metadata):
+    autoload = False
+    if metadata.bind.has_table('auteur'):
+        autoload = True
+    auteur = Table('auteur', metadata,
+                        Column('auteur_pk', Integer(),
+                               Sequence('auteur_auteur_pk_seq'),
+                               primary_key=True),
+                        Column('auteur_nom', Text()),
+                        Column('auteur_prenom', Text()),
+                        Column('auteur_prenom', Text()),
+                        autoload=autoload,
+                        extend_existing=True)
+    return auteur
+
+
+def getLinkLivreAuteur(metadata):
+    autoload = False
+    if metadata.bind.has_table('link_livre_auteur'):
+        autoload = True
+    linkLivreAuteur = Table('link_livre_auteur', metadata,
+                             Column('lnk_livre_pk', Integer(),
+                                     ForeignKey('livre.liv_pk'),
+                                     primary_key=True),
+                             Column('lnk_auteur_pk', Integer(),
+                                     ForeignKey('auteur.auteur_pk'),
+                                     primary_key=True),
+                             autoload=autoload,
+                             extend_existing=True)
+    return linkLivreAuteur
+
+
 def getAllLivre(metadata):
     autoload = False
     if metadata.bind.has_table('livre'):

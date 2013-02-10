@@ -4,13 +4,17 @@ from zope.interface import implements
 
 from sqlalchemy.orm import mapper
 from cenforsoc.db.pgsql.baseTypes import (Periodique,
+                                          Auteur,
                                           Livre,
                                           Affiche,
+                                          LinkLivreAuteur,
                                           Formation,
                                           FormationInscription,
                                           LinkFormationInscription)
 from cenforsoc.db.pgsql.tables import (getAllPeriodique,
+                                       getAllAuteur,
                                        getAllLivre,
+                                       getLinkLivreAuteur,
                                        getAllAffiche,
                                        getAllFormation,
                                        getAllFormationInscription,
@@ -38,11 +42,29 @@ class CenforsocModel(object):
         mapper(Periodique, periodiqueTable)
         model.add('periodique', table=periodiqueTable, mapper_class=Periodique)
 
+## table auteur ##
+        auteurTable = getAllAuteur(metadata)
+        auteurTable.create(checkfirst=True)
+        mapper(Auteur, auteurTable)
+        model.add('auteur', table=auteurTable, mapper_class=Auteur)
+
 ## table livre ##
         livreTable = getAllLivre(metadata)
         livreTable.create(checkfirst=True)
         mapper(Livre, livreTable)
         model.add('livre', table=livreTable, mapper_class=Livre)
+
+## table jointure likn_livre_auteur ##
+        linkLivreAuteurTable = getLinkLivreAuteur(metadata)
+        linkLivreAuteurTable.create(checkfirst=True)
+        mapper(LinkLivreAuteur, linkLivreAuteurTable,
+                primary_key=[linkLivreAuteurTable.c.lnk_livre_pk, linkLivreAuteurTable.c.lnk_auteur_pk])
+        model.add('link_livre_auteur',
+                   table=linkLivreAuteurTable,
+                   mapper_class=LinkLivreAuteur)
+
+        metadata.create_all()
+        return model
 
 ## table affiche ##
         afficheTable = getAllAffiche(metadata)

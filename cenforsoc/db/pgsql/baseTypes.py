@@ -14,7 +14,15 @@ class Periodique(MappedClassBase):
     c = None
 
 
+class Auteur(MappedClassBase):
+    c = None
+
+
 class Livre(MappedClassBase):
+    c = None
+
+
+class LinkLivreAuteur(MappedClassBase):
     c = None
 
 
