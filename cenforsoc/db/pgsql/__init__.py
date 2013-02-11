@@ -9,10 +9,10 @@ logging.getLogger(LOGGER).info('cenforsoc.db.pgsql - Installing Product')
 
 def initialize(context):
     pwManager = getUtility(IPasswordManager, 'pg')
-    connString = 'postgres://%s@localhost/cenforsoc' % pwManager.getLoginPassWithSeparator(':')
+    connString = 'postgresql://%s@localhost/cenforsoc' % pwManager.getLoginPassWithSeparator(':')
     createSAWrapper(connString,
-                    forZope = True,
-                    echo = False,
-                    engine_options = {'convert_unicode': True},
-                    name ='cenforsoc',
-                    model ='cenforsocMappings')
+                    forZope=True,
+                    echo=False,
+                    engine_options={'convert_unicode': True},
+                    name='cenforsoc',
+                    model='cenforsocMappings')
