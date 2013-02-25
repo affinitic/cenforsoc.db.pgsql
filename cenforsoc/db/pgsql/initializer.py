@@ -2,7 +2,7 @@ from z3c.sqlalchemy import Model
 from z3c.sqlalchemy.interfaces import IModelProvider
 from zope.interface import implements
 
-from sqlalchemy.orm import mapper
+from sqlalchemy.orm import mapper, relationship
 from cenforsoc.db.pgsql.baseTypes import (Periodique,
                                           Auteur,
                                           Livre,
@@ -58,13 +58,14 @@ class CenforsocModel(object):
         linkLivreAuteurTable = getLinkLivreAuteur(metadata)
         linkLivreAuteurTable.create(checkfirst=True)
         mapper(LinkLivreAuteur, linkLivreAuteurTable,
-                primary_key=[linkLivreAuteurTable.c.lnk_livre_pk, linkLivreAuteurTable.c.lnk_auteur_pk])
+                primary_key=[linkLivreAuteurTable.c.livre_fk, linkLivreAuteurTable.c.auteur_fk],
+                properties={'livres': relationship(Livre,
+                                                   order_by=[livreTable.c.liv_titre]),
+                            'auteurs': relationship(Auteur,
+                                                    order_by=[auteurTable.c.auteur_nom])})
         model.add('link_livre_auteur',
                    table=linkLivreAuteurTable,
                    mapper_class=LinkLivreAuteur)
-
-        metadata.create_all()
-        return model
 
 ## table affiche ##
         afficheTable = getAllAffiche(metadata)
@@ -84,7 +85,7 @@ class CenforsocModel(object):
         mapper(FormationInscription, formationInscriptionTable)
         model.add('formation_inscription', table=formationInscriptionTable, mapper_class=FormationInscription)
 
-## table jointure likn_formation_inscription
+## table jointure link_formation_inscription
         linkFormationInscriptionTable = getLinkFormationInscription(metadata)
         linkFormationInscriptionTable.create(checkfirst=True)
         mapper(LinkFormationInscription, linkFormationInscriptionTable,

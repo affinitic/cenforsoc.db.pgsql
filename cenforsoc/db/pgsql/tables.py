@@ -39,10 +39,10 @@ def getLinkLivreAuteur(metadata):
     if metadata.bind.has_table('link_livre_auteur'):
         autoload = True
     linkLivreAuteur = Table('link_livre_auteur', metadata,
-                             Column('lnk_livre_pk', Integer(),
+                             Column('livre_fk', Integer(),
                                      ForeignKey('livre.liv_pk'),
                                      primary_key=True),
-                             Column('lnk_auteur_pk', Integer(),
+                             Column('auteur_fk', Integer(),
                                      ForeignKey('auteur.auteur_pk'),
                                      primary_key=True),
                              autoload=autoload,
@@ -105,7 +105,7 @@ def getAllFormationInscription(metadata):
         autoload = True
     formationInscription = Table('formation_inscription', metadata,
                                  Column('form_ins_pk', Integer(),
-                                        Sequence('formation_for_pk_seq'),
+                                        Sequence('formation_inscription_form_ins_pk_seq'),
                                         primary_key=True),
                                  Column('form_ins_date', DateTime(), default=func.now()),
                                  Column('form_ins_nom', Text()),
