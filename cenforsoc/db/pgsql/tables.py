@@ -86,7 +86,7 @@ def getAllFormation(metadata):
         autoload = True
     formation = Table('formation', metadata,
                       Column('form_pk', Integer(),
-                             Sequence('formation_for_pk_seq'),
+                             Sequence('formation_form_pk_seq'),
                              primary_key=True),
                       Column('form_titre', Text()),
                       Column('form_duree', Text()),
