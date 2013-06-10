@@ -89,7 +89,9 @@ class CenforsocModel(object):
         linkFormationInscriptionTable = getLinkFormationInscription(metadata)
         linkFormationInscriptionTable.create(checkfirst=True)
         mapper(LinkFormationInscription, linkFormationInscriptionTable,
-                primary_key=[linkFormationInscriptionTable.c.lnk_formation_pk, linkFormationInscriptionTable.c.lnk_inscription_pk])
+                primary_key=[linkFormationInscriptionTable.c.lnk_formation_pk, linkFormationInscriptionTable.c.lnk_inscription_pk],
+                properties={'formations' : relationship(Formation, order_by=[formationTable.c.form_titre]),
+                            'inscrits' : relationship(FormationInscription, order_by=[formationInscriptionTable.c.form_ins_nom])})
         model.add('link_formation_inscription',
                    table=linkFormationInscriptionTable,
                    mapper_class=LinkFormationInscription)
