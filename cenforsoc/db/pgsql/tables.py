@@ -1,6 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from sqlalchemy import (Table, Column, ForeignKey, Integer, Text, Sequence, func, DateTime)
+from sqlalchemy import (Table,
+                        Boolean,
+                        Column,
+                        ForeignKey,
+                        Integer,
+                        Text,
+                        Sequence,
+                        func,
+                        DateTime)
 
 
 def getAllPeriodique(metadata):
@@ -62,9 +70,6 @@ def getAllLivre(metadata):
                   Column('liv_inventaire', Text()),
                   Column('liv_cote_rang', Text()),
                   Column('liv_titre', Text()),
-                  Column('liv_auteur_1', Text()),
-                  Column('liv_auteur_2', Text()),
-                  Column('liv_auteur_3', Text()),
                   Column('liv_edition', Text()),
                   Column('liv_lieu', Text()),
                   Column('liv_editeur', Text()),
@@ -74,7 +79,7 @@ def getAllLivre(metadata):
                   Column('liv_notes', Text()),
                   Column('liv_isbn', Text()),
                   Column('liv_mots_cles', Text()),
-                  Column('liv_pret', Text()),
+                  Column('liv_pret', Boolean(), default=True),
                   autoload=autoload,
                   extend_existing=True)
     return livre
@@ -128,7 +133,6 @@ def getAllFormationInscription(metadata):
                                  Column('form_ins_del_synd', Text()),
                                  Column('form_ins_del_ce', Text()),
                                  Column('form_ins_del_cppt', Text()),
-                                 Column('form_ins_formation_suivie', Text()),
                                  autoload=autoload,
                                  extend_existing=True)
     return formationInscription
@@ -173,6 +177,7 @@ def getAllAffiche(metadata):
                     Column('affiche_historique', Text()),
                     Column('affiche_commanditaire', Text()),
                     Column('affiche_serie', Text()),
+                    Column('affiche_nom_fichier', Text()),
                     autoload=autoload,
                     extend_existing=True)
     return affiche

@@ -54,7 +54,7 @@ class CenforsocModel(object):
         mapper(Livre, livreTable)
         model.add('livre', table=livreTable, mapper_class=Livre)
 
-## table jointure likn_livre_auteur ##
+## table jointure link_livre_auteur ##
         linkLivreAuteurTable = getLinkLivreAuteur(metadata)
         linkLivreAuteurTable.create(checkfirst=True)
         mapper(LinkLivreAuteur, linkLivreAuteurTable,
