@@ -16,13 +16,13 @@ def getAllPeriodique(metadata):
     if metadata.bind.has_table('periodique'):
         autoload = True
     periodique = Table('periodique', metadata,
-                        Column('per_pk', Integer(),
-                               Sequence('periodique_per_pk_seq'),
-                               primary_key=True),
-                        Column('per_titre', Text()),
-                        Column('per_description', Text()),
-                        autoload=autoload,
-                        extend_existing=True)
+                       Column('per_pk', Integer(),
+                              Sequence('periodique_per_pk_seq'),
+                              primary_key=True),
+                       Column('per_titre', Text()),
+                       Column('per_description', Text()),
+                       autoload=autoload,
+                       extend_existing=True)
     return periodique
 
 
@@ -31,14 +31,14 @@ def getAllAuteur(metadata):
     if metadata.bind.has_table('auteur'):
         autoload = True
     auteur = Table('auteur', metadata,
-                        Column('auteur_pk', Integer(),
-                               Sequence('auteur_auteur_pk_seq'),
-                               primary_key=True),
-                        Column('auteur_nom', Text()),
-                        Column('auteur_prenom', Text()),
-                        Column('auteur_prenom', Text()),
-                        autoload=autoload,
-                        extend_existing=True)
+                   Column('auteur_pk', Integer(),
+                          Sequence('auteur_auteur_pk_seq'),
+                          primary_key=True),
+                   Column('auteur_nom', Text()),
+                   Column('auteur_prenom', Text()),
+                   Column('auteur_prenom', Text()),
+                   autoload=autoload,
+                   extend_existing=True)
     return auteur
 
 
@@ -47,14 +47,14 @@ def getLinkLivreAuteur(metadata):
     if metadata.bind.has_table('link_livre_auteur'):
         autoload = True
     linkLivreAuteur = Table('link_livre_auteur', metadata,
-                             Column('livre_fk', Integer(),
-                                     ForeignKey('livre.liv_pk'),
-                                     primary_key=True),
-                             Column('auteur_fk', Integer(),
-                                     ForeignKey('auteur.auteur_pk'),
-                                     primary_key=True),
-                             autoload=autoload,
-                             extend_existing=True)
+                            Column('livre_fk', Integer(),
+                                   ForeignKey('livre.liv_pk'),
+                                   primary_key=True),
+                            Column('auteur_fk', Integer(),
+                                   ForeignKey('auteur.auteur_pk'),
+                                   primary_key=True),
+                            autoload=autoload,
+                            extend_existing=True)
     return linkLivreAuteur
 
 
@@ -99,6 +99,7 @@ def getAllFormation(metadata):
                       Column('form_description', Text()),
                       Column('form_niveau_requis', Text()),
                       Column('form_etat', Text()),
+                      Column('form_organisme', Text()),
                       autoload=autoload,
                       extend_existing=True)
     return formation
@@ -133,6 +134,7 @@ def getAllFormationInscription(metadata):
                                  Column('form_ins_del_synd', Text()),
                                  Column('form_ins_del_ce', Text()),
                                  Column('form_ins_del_cppt', Text()),
+                                 Column('form_ins_organisme', Text()),
                                  autoload=autoload,
                                  extend_existing=True)
     return formationInscription
